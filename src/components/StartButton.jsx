@@ -37,7 +37,7 @@ const Button = styled.button`
 const StartButton = (props) => {
   return (
     <Button color={props.theme}>
-      <NavLink to={"/"}>
+      <NavLink to={"/"} style={{color:"inherit"}}>
         <FaPowerOff size={28} fontWeight="bold" />
       </NavLink>
     </Button>
