@@ -18,8 +18,7 @@ const WorkPage = () => {
   const [work, setWork] = useState([]);
 
   const fetchWork = async () => {
-    const res = await axios.get("http://localhost:3210/api/projects/");
-    console.log("test");
+    const res = await axios.get("https://edit.portfolio.clvansa.de/api/projects");
     console.log(res.data);
     setWork(res.data)
   };
