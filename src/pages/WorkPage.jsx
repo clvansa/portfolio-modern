@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { DarkTheme } from "../utils/Theme";
 import { FaYinYang } from "react-icons/fa";
@@ -7,14 +7,25 @@ import LogoComponent from "../components/LogoComponent";
 import SocialIcons from "../components/SocialIcons";
 import StartButton from "../components/StartButton";
 import Card from "../components/Card";
-import { Work } from "../data/Work";
 import BigTitle from "../components/BigTitle";
 import { motion } from "framer-motion";
 import Cv from "../components/Cv";
+import axios from "axios";
 
 const WorkPage = () => {
   const ref = useRef(null);
   const yinyang = useRef(null);
+  const [work, setWork] = useState([]);
+
+  const fetchWork = async () => {
+    const res = await axios.get("http://localhost:3210/api/projects/");
+    console.log("test");
+    console.log(res.data);
+    setWork(res.data)
+  };
+  useEffect(() => {
+    fetchWork();
+  }, []);
 
   useEffect(() => {
     let element = ref.current;
@@ -47,7 +58,7 @@ const WorkPage = () => {
         <Cv theme="dark" />
 
         <Main ref={ref} variants={container} initial="hidden" animate="show">
-          {Work && Work?.map((work) => <Card work={work} key={work.id} />)}
+          {work && work?.map((work) => <Card work={work} key={work.id} />)}
         </Main>
 
         <Rotate ref={yinyang}>
