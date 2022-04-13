@@ -19,7 +19,6 @@ const WorkPage = () => {
 
   const fetchWork = async () => {
     const res = await axios.get("https://edit.portfolio.clvansa.de/api/projects");
-    console.log(res.data);
     setWork(res.data)
   };
   useEffect(() => {
